@@ -4,19 +4,26 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Weshopii - Your store's own online store, on WhatsApp</title>
-<meta name="description" content="Give your grocery, sweet store or bakery its own branded ordering store on WhatsApp. Zero commission, direct UPI payments, and your customers always stay yours.">
+<meta name="description" content="Give your store or brand its own branded ordering store on WhatsApp. Zero commission, direct UPI payments, and your customers always stay yours.">
 <meta name="theme-color" content="#6D2EF6">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://weshopii.com/">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Weshopii">
 <meta property="og:title" content="Weshopii - Your store's own online store, on WhatsApp">
 <meta property="og:description" content="Zero commission ordering for local stores. Customers order on WhatsApp, you keep every rupee and every customer.">
 <meta property="og:url" content="https://weshopii.com/">
+<meta property="og:image" content="https://weshopii.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta property="og:locale" content="en_IN">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Weshopii - Your store's own online store, on WhatsApp">
 <meta name="twitter:description" content="Zero commission ordering for local stores. Customers order on WhatsApp, you keep every rupee.">
+<meta name="twitter:image" content="https://weshopii.com/og-image.png">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"SoftwareApplication","name":"Weshopii","applicationCategory":"BusinessApplication","operatingSystem":"Web","description":"A WhatsApp-based ordering platform that gives local stores their own branded online store with zero commission and direct UPI payments.","offers":{"@type":"Offer","priceCurrency":"INR","price":"0","description":"Free demo available"},"areaServed":{"@type":"Country","name":"India"}}
 </script>
@@ -359,7 +366,7 @@ img,svg{display:block;max-width:100%}
   border-top:1px solid rgba(255,255,255,.1);padding-top:1.6rem;
   display:flex;justify-content:space-between;flex-wrap:wrap;gap:.8rem;font-size:.86rem;color:#7C79A0;
 }
-.tag-demo{background:var(--clay);color:#fff;font-size:.72rem;font-weight:700;padding:.2rem .7rem;border-radius:100px}
+
 
 /* ============================================================
    RESPONSIVE
@@ -1262,7 +1269,7 @@ img,svg{display:block;max-width:100%}
         <div class="cards pricing-cards">
           <article class="card price-card">
             <div class="price-name">Basic</div>
-            <div class="price-tag"><span class="price-amt">&#8377;1999</span><span class="price-per">/ month</span></div>
+            <div class="price-tag"><span class="price-amt">&#8377;1999*</span><span class="price-per">/ month</span></div>
             <p class="price-note">For a single store getting started online.</p>
             <ul class="price-list">
               <li>Your own branded store</li>
@@ -1277,7 +1284,7 @@ img,svg{display:block;max-width:100%}
           <article class="card price-card price-card-featured">
             <div class="price-badge">Most popular</div>
             <div class="price-name">Pro</div>
-            <div class="price-tag"><span class="price-amt">&#8377;3999</span><span class="price-per">/ month</span></div>
+            <div class="price-tag"><span class="price-amt">&#8377;3999*</span><span class="price-per">/ month</span></div>
             <p class="price-note">For a busy store that wants to grow.</p>
             <ul class="price-list">
               <li>Everything in Basic</li>
@@ -1300,7 +1307,7 @@ img,svg{display:block;max-width:100%}
             <a class="btn btn-ghost btn-block" href="#" data-go="contact">Talk to us</a>
           </article>
         </div>
-        <p class="center muted small" style="margin-top:1.5rem">Prices are indicative and being finalised. Book a demo and we'll share current pricing.</p>
+        <p class="center muted small" style="margin-top:1.5rem">*T&amp;C apply. For detailed pricing, request a demo - our executive will connect with you.</p>
       </div>
     </section>
 
@@ -1395,7 +1402,6 @@ img,svg{display:block;max-width:100%}
     </div>
     <div class="footer-bottom">
       <span>© 2026 Weshopii. All rights reserved.</span>
-      <span class="tag-demo">Demo site - for preview only</span>
     </div>
   </div>
 </footer>
@@ -1434,20 +1440,60 @@ img,svg{display:block;max-width:100%}
     t.setAttribute('aria-expanded',open?'true':'false');
     t.setAttribute('aria-label',open?'Close menu':'Open menu');
   }); }
+  var WEB3FORMS_KEY = '8617cff5-76ed-4025-9a60-ac5ba4eff636';
   document.addEventListener('submit', function(e){
     var f = e.target.closest('.demoForm');
     if(!f) return;
     e.preventDefault();
     var note = f.querySelector('[data-note]');
+    var btn = f.querySelector('button[type="submit"]');
     var name = f.querySelector('[name="name"]');
     var store = f.querySelector('[name="store"]');
     var phone = f.querySelector('[name="phone"]');
+    var typeEl = f.querySelector('[name="type"]');
+    var stateEl = f.querySelector('[name="state"]');
+    var lookingEl = f.querySelector('[name="looking"]');
     var missing = [];
     if(!name.value.trim()) missing.push('your name');
     if(!store.value.trim()) missing.push('your store name');
     if(!/^\d{10}$/.test(phone.value.replace(/\D/g,''))) missing.push('a 10-digit contact number');
     if(missing.length){ note.textContent = 'Please add ' + missing.join(', ') + '.'; note.style.color = '#F0704A'; return; }
-    note.textContent = 'This is a demo site - the form isn\u2019t connected yet.'; note.style.color = '#5620C9';
+
+    var payload = {
+      access_key: WEB3FORMS_KEY,
+      subject: 'New demo request from Weshopii website',
+      from_name: 'Weshopii website',
+      'Name': name.value.trim(),
+      'Brand / store name': store.value.trim(),
+      'Contact number': phone.value.replace(/\D/g,''),
+      'Nature of business': typeEl ? typeEl.value : '',
+      'State': stateEl ? stateEl.value.trim() : '',
+      'What they are looking for': lookingEl ? lookingEl.value.trim() : ''
+    };
+
+    var oldLabel = btn ? btn.textContent : '';
+    if(btn){ btn.disabled = true; btn.textContent = 'Sending...'; }
+    note.textContent = ''; note.style.color = '';
+
+    fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(payload)
+    }).then(function(r){ return r.json(); }).then(function(data){
+      if(data && data.success){
+        f.reset();
+        note.textContent = 'Thank you! We have received your request and our team will contact you soon.';
+        note.style.color = '#5620C9';
+      } else {
+        note.textContent = 'Something went wrong. Please try again, or WhatsApp us directly.';
+        note.style.color = '#F0704A';
+      }
+    }).catch(function(){
+      note.textContent = 'Network error. Please try again, or WhatsApp us directly.';
+      note.style.color = '#F0704A';
+    }).finally(function(){
+      if(btn){ btn.disabled = false; btn.textContent = oldLabel; }
+    });
   });
 })();
 </script>
