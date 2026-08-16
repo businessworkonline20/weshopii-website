@@ -130,6 +130,7 @@ img,svg{display:block;max-width:100%}
   content:"";position:absolute;left:0;right:0;bottom:-7px;height:2px;background:var(--emerald);border-radius:2px;
 }
 .nav-cta{display:flex;align-items:center;gap:.7rem}
+.nav-login-mobile{display:none}
 .nav-toggle{
   display:none;flex-direction:column;gap:5px;background:none;border:0;
   padding:.55rem;cursor:pointer;border-radius:10px;
@@ -402,6 +403,8 @@ img,svg{display:block;max-width:100%}
   .nav-links a[aria-current="page"]::after{display:none}
   .nav-toggle{display:flex}
   .nav-cta .btn-ghost{display:none}
+  .nav-login-mobile{display:block;border-top:1px solid var(--line);margin-top:.35rem;padding-top:.35rem}
+  .nav-login-mobile a{color:var(--emerald)!important;font-weight:700}
   .nav-cta .btn-primary{padding:.5rem .85rem;font-size:.8rem}
 }
 @media (max-width:620px){
@@ -559,9 +562,10 @@ img,svg{display:block;max-width:100%}
         <li><a href="#" data-go="pricing" data-nav="pricing">Pricing</a></li>
         <li><a href="#" data-go="about" data-nav="about">About</a></li>
         <li><a href="#" data-go="contact" data-nav="contact">Contact</a></li>
+        <li class="nav-login-mobile"><a href="https://app.weshopii.com" target="_blank" rel="noopener">Login</a></li>
       </ul>
       <div class="nav-cta">
-        <a class="btn btn-ghost" href="https://app.weshopii.com">Login</a>
+        <a class="btn btn-ghost" href="https://app.weshopii.com" target="_blank" rel="noopener">Login</a>
         <a class="btn btn-primary" href="#" data-go="contact">Demo request</a>
         <button class="nav-toggle" id="navtoggle" aria-label="Open menu" aria-expanded="false" aria-controls="navlinks">
           <span></span><span></span><span></span>
